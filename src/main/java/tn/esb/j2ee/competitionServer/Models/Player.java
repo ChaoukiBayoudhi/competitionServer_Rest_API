@@ -1,5 +1,6 @@
 package tn.esb.j2ee.competitionServer.Models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import javax.persistence.*;
@@ -25,7 +26,8 @@ public class Player {
     private Long Code;
     @NonNull
     private String Name;
-    //@NonNull
+    @NonNull
+    @JsonFormat(pattern="yyyy-MM-dd")
     private LocalDate BithDay;
     @NonNull
     private int T_shirt_Number;

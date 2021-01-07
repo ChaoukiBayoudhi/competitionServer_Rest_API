@@ -9,8 +9,10 @@ import tn.esb.j2ee.competitionServer.Models.Player;
 import tn.esb.j2ee.competitionServer.Models.Team;
 import tn.esb.j2ee.competitionServer.Repositories.teamRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class teamService {
@@ -25,12 +27,21 @@ public class teamService {
     public ResponseEntity<Team> addTeam(Team t1)
     {
         try {
+            List<Team> res=findByNameAndCreationDate(t1.getName(),t1.getCreationDate());
+            if(!res.isEmpty())
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             Team team = teamRepos.save(t1);
             return new ResponseEntity<Team>(team, HttpStatus.CREATED);
              }catch (Exception  e)
             {
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
             }
+    }
+    private List<Team> findByNameAndCreationDate(String name, LocalDate creationDate)
+    {
+        return teamRepos.findAll().stream()
+                .filter(x->x.getName().equalsIgnoreCase(name) && x.getCreationDate().isEqual(creationDate))
+                .collect(Collectors.toList());
     }
 
     //find Team
@@ -61,7 +72,7 @@ public class teamService {
     }
 
     //delete
-    public ResponseEntity<?> deletePlayer(Long id)
+    public ResponseEntity<?> deleteTeam(Long id)
     {
         try {
             Optional<Team> team = teamRepos.findById(id);

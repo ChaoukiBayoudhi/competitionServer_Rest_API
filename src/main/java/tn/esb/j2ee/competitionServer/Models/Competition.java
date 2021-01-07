@@ -1,9 +1,11 @@
 package tn.esb.j2ee.competitionServer.Models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,7 +27,9 @@ public class Competition {
     private String name;
     @NonNull
     private String country;
-    private LocalDate startDate;
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private LocalDateTime startDate;
+    @JsonFormat(pattern="yyyy-MM-dd")
     private LocalDate endDate;
     @ManyToMany(mappedBy="its_competion")
     private Set<Team> teamsOfCompetion=new HashSet<>();

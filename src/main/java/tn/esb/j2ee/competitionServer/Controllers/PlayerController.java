@@ -24,25 +24,6 @@ public class PlayerController {
         this.plService = plService;
     }
 
-//    @GetMapping("/all")
-//    public ResponseEntity<List<Player>> getAllPlayers(@RequestParam(required = false) String name) {
-//        try {
-//            List<Player> Players = new ArrayList<>();
-//
-//            if (name == null)
-//                playerRepos.findAll().forEach(Players::add);
-//            else
-//                playerRepos.findByName(name).forEach(Players::add);
-//
-//            if (Players.isEmpty()) {
-//                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//            }
-//
-//            return new ResponseEntity<>(Players, HttpStatus.OK);
-//        } catch (Exception e) {
-//            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
 
     @GetMapping("/player/{id}")
     public ResponseEntity<?> getPlayerById(@PathVariable("id") long id) {
@@ -54,44 +35,5 @@ public class PlayerController {
         return plService.addPlayer(player);
     }
 
-//    @PutMapping("/player/{id}")
-//    public ResponseEntity<Player> updatePlayer(@PathVariable("id") long id, @RequestBody Player Player) {
-//        try{
-//                Optional<Player> PlayerOp = playerRepos.findById(id);
-//
-//
-//            if (PlayerOp.isPresent()) {
-//                Player player = PlayerOp.get();
-//                player.setName(Player.getName());
-//                player.setBithDay(Player.getBithDay());
-//                player.setT_shirt_Number(Player.getT_shirt_Number());
-//                return new ResponseEntity<>(playerRepos.save(player), HttpStatus.OK);
-//            } else {
-//                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//            }
-//        } catch (Exception e) {
-//            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
-//
-//    @DeleteMapping("/player/{id}")
-//    public ResponseEntity<HttpStatus> deletePlayer(@PathVariable("id") long id) {
-//        try {
-//            playerRepos.deleteById(id);
-//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//        } catch (Exception e) {
-//            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
-//
-//    @DeleteMapping("/players")
-//    public ResponseEntity<HttpStatus> deleteAllPlayers() {
-//        try {
-//            playerRepos.deleteAll();
-//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//        } catch (Exception e) {
-//            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//
-//    }
+
 }

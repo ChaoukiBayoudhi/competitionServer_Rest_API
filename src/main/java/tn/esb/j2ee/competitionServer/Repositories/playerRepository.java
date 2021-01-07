@@ -9,6 +9,15 @@ import java.util.List;
 
 @Repository
 public interface playerRepository extends JpaRepository<Player,Long> {
+    //JPQL ou HQL
+//    @Query("from player where name=?1 and tshirtNumber=?2")
+//    List<Player> findByNameAndTshirtNumber(String name,int tshirtNumber);
+//
+
+
+
+
+
     //JpaRepository est definie par spring-data
     //T save(T obj) -->insert player into table Player
     //Collection<T> findAll()
@@ -16,8 +25,6 @@ public interface playerRepository extends JpaRepository<Player,Long> {
     //Detete(T obj)
     //...
 
-    @Query("FROM Player WHERE name = ?1")
-    List<Player> findByName(String name);
 
     //List<Player> findByNameContaining(String ch);
 

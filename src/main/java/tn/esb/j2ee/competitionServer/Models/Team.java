@@ -1,5 +1,6 @@
 package tn.esb.j2ee.competitionServer.Models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import javax.persistence.*;
@@ -22,6 +23,7 @@ public class Team {
     @NonNull
     private String name;
     @NonNull
+    @JsonFormat(pattern="yyyy-MM-dd")
     private LocalDate creationDate;
     private int nbPlayers;
     @OneToMany(mappedBy="his_team", cascade=CascadeType.ALL)

@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/teams")
+@CrossOrigin(origins="http://localhost:4200")
 public class TeamController {
 
     private teamService teamServ;
@@ -27,5 +28,20 @@ public class TeamController {
     public ResponseEntity<Team> addTeam(@Valid @RequestBody Team t1)
     {
         return teamServ.addTeam(t1);
+    }
+    @GetMapping("/team/{id}")
+    public ResponseEntity<Team> getTeam(@PathVariable Long id)
+    {
+        return teamServ.getTeamById(id);
+    }
+    @DeleteMapping("/team/{id}")
+    public ResponseEntity deleteTeam(@PathVariable Long id)
+    {
+        return teamServ.deleteTeam(id);
+    }
+    @PutMapping("/team/{id}")
+    public ResponseEntity<Team> updateTeam(@PathVariable Long id,@Valid @RequestBody Team t1)
+    {
+        return teamServ.updateTeam(id,t1);
     }
 }
