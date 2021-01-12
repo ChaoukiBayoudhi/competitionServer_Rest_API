@@ -64,8 +64,9 @@ public class stadiumService {
         if(lst1.isPresent())
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         Stadium stadium=res.get();
-        stadium.setId(newStadium.getId());
-        //stadium.setName(newStadium.getName());
+        //stadium.setId(newStadium.getId());
+        stadium.setName(newStadium.getName());
+        stadium.setCapacity(newStadium.getCapacity());
         Stadium st=stadiumRepos.save(stadium);
         return new ResponseEntity<>(st,HttpStatus.OK);
     }
